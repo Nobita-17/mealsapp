@@ -15,7 +15,7 @@ class mealsscreen extends StatelessWidget {
   void myselect(BuildContext context, Meal meal) {       //chnage mealscreen to mealdetailscreen
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (ctx) => MealDetail(
+        builder: (ctx) => MealDetail(   //shift from mealiemscreen to meal detail screen
           meal: meal,
         ),
       ),
@@ -45,11 +45,11 @@ class mealsscreen extends StatelessWidget {
     );
 
     if (meals.isNotEmpty) {
-      content = ListView.builder(
+      content = ListView.builder(   //displaying List of Widegt . Data type of meal is list
         itemCount: meals.length,
         itemBuilder: (ctx, index) => MealsItemss(
           meal: meals[index],
-          onselect: myselect,   //This widegt takes this function as an argument
+          onselect: myselect,   //This widget takes this function as an argument
         ),
       );
     }

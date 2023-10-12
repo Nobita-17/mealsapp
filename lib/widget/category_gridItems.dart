@@ -9,13 +9,13 @@ class CategoryGrid extends StatelessWidget {
    CategoryGrid({super.key, required this.category,required this.onselect});
 
   final Category category;
-  final void Function() onselect;
+  final void Function() onselect;   //This Function is Already Defined
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onselect,
-      splashColor: Theme.of(context).primaryColor,
+      splashColor: Theme.of(context).primaryColor,  //When user clicks he gets a hover color
       borderRadius: BorderRadius.circular(15),
 
       child: Padding(

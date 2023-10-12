@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../model/meals.dart';
 
-const availableCategories = [
+const availableCategories = [   //We have created a list of Categories based on our data model
   Category(
     id: 'c1',
     title: 'Italian',

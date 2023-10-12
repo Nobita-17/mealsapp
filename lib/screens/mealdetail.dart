@@ -9,13 +9,53 @@ class MealDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image.network(meal.imageUrl),
-        Text(meal.title),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          meal.title,
+          style: TextStyle(fontSize: 16, color: Colors.white),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Image.network(
+              meal.imageUrl,
+              height: 200,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: 20,),
+            Text(
+              'Ingredients',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(color: Theme.of(context).colorScheme.primary),
+            ),
+            SizedBox(height: 20,),
+            for(final ingredeint in meal.ingredients)
+              Text(ingredeint,textAlign: TextAlign.center,style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(color: Theme.of(context).colorScheme.onBackground,),),
+            SizedBox(height: 20,),
+            Text(
+              'Steps',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: Theme.of(context).colorScheme.secondary),
+            ),
+            for(final steps in meal.steps)
+              Text(steps,textAlign: TextAlign.center,style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: Theme.of(context).colorScheme.onBackground,),)
+          ],
+        ),
+      ),
     );
   }
 }
