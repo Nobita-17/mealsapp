@@ -7,16 +7,18 @@ import '../widget/meal_item.dart';
 import 'mealdetail.dart';
 
 class mealsscreen extends StatelessWidget {
-  const mealsscreen({super.key, required this.title, required this.meals});
+  const mealsscreen({super.key, required this.title, required this.meals,required this.selectfav});
 
   final String title;
   final List<Meal> meals;
+  final Function (Meal meal) selectfav;
 
   void myselect(BuildContext context, Meal meal) {       //chnage mealscreen to mealdetailscreen
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MealDetail(   //shift from mealiemscreen to meal detail screen
           meal: meal,
+          selectfav: selectfav,
         ),
       ),
     );

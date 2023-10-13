@@ -5,12 +5,17 @@ import '../model/meals.dart';
 class MealDetail extends StatelessWidget {
   final Meal meal;
 
-  MealDetail({Key? key, required this.meal}) : super(key: key);
+  final Function (Meal meal) selectfav;
+
+  MealDetail({Key? key, required this.meal,required this.selectfav}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: selectfav(meal), icon: Icon(Icons.star))
+        ],
         title: Text(
           meal.title,
           style: TextStyle(fontSize: 16, color: Colors.white),
