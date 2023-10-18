@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({Key? key});
+  const MainDrawer({Key? key, required this.myidentifier});
+
+  final void Function (String identifier) myidentifier;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,9 @@ class MainDrawer extends StatelessWidget {
                     fontSize: 24,
                   ),
             ),
-            onTap: () {},
+            onTap: () {
+              myidentifier('meals');
+            },
           ),
           ListTile(
             leading: Icon(
@@ -65,7 +69,9 @@ class MainDrawer extends StatelessWidget {
                     fontSize: 24,
                   ),
             ),
-            onTap: () {},
+            onTap: () {
+              myidentifier('filters');
+            },
           ),
         ],
       ),

@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../model/meals.dart';
 import '../screens/categories.dart';
+import '../screens/filter.dart';
 import '../screens/mealsscreen.dart';
 import 'maindrawer.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
+
+
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -22,6 +25,17 @@ class _TabsScreenState extends State<TabsScreen> {
   //   ScaffoldMessenger.of(context).clearSnackBars();
   //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)),);
   // }
+
+  void _setScreen(String identifier) {
+    Navigator.of(context).pop();
+    if (identifier == 'filters') {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => const FiltersScreen(),
+        ),
+      );
+    }
+  }
 
   void selectfav(Meal meal) {
     final iscontain = favoutite.contains(meal);
@@ -54,7 +68,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
     return Scaffold(
       appBar: AppBar(),
-      drawer: const MainDrawer(),
+      drawer:  MainDrawer(myidentifier: _setScreen),
       body: activescreen,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _select,
