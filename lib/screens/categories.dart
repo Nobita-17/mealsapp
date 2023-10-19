@@ -10,15 +10,16 @@ import '../widget/category_gridItems.dart';
 
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key, required this.selectfav});
+  const CategoryScreen({super.key, required this.selectfav, required this.availabemeals});
 
+  final List<Meal> availabemeals;
   final Function (Meal meal) selectfav;
 
 //Build Context Store the Location of Widegt in Widegt Tree.
 //Here we are passing Build context Explictedly since our function is not inside the build function
 
   void _selectedCategory(BuildContext context, Category category) {
-    final filtermeals= dummyMeals.where((meal) => meal.categories.contains(category.id)).toList();
+    final filtermeals=availabemeals.where((meal) => meal.categories.contains(category.id)).toList();
     Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => mealsscreen(title: category.title, meals: filtermeals,selectfav: selectfav,)));
   } //In this we are just changing the Screen
 
