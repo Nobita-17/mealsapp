@@ -5,9 +5,9 @@ import '../model/meals.dart';
 class MealDetail extends StatelessWidget {
   final Meal meal;
 
-  final Function (Meal meal) selectfav;
 
-  MealDetail({Key? key, required this.meal,required this.selectfav}) : super(key: key);
+
+  MealDetail({Key? key, required this.meal}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

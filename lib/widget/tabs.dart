@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/dummy_data.dart';
 import '../model/meals.dart';
 import '../screens/categories.dart';
 import '../screens/filter.dart';
 import '../screens/mealsscreen.dart';
 import 'maindrawer.dart';
+import 'package:mealsapp/provider/favprovider.dart';
 
 const kInitialFilters = {
   Filter.glutenFree: false,
@@ -15,17 +16,19 @@ const kInitialFilters = {
   Filter.vegan: false
 };
 
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() => _TabsScreenState();
+  ConsumerState<TabsScreen> createState() {
+    return _TabsScreenState();
+  }
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends ConsumerState<TabsScreen> {
   int selectedIndex = 0;
 
-  final List<Meal> favoutite = [];
+
   Map<Filter, bool> _selectedFilters = kInitialFilters;
 
   // void show_message(String message){
@@ -59,15 +62,6 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
 
-  void selectfav(Meal meal) {
-    final iscontain = favoutite.contains(meal);
-    if (iscontain) {
-      favoutite.remove(meal);
-    } else {
-      favoutite.add(meal);
-    }
-  }
-
   void _select(int index) {
     setState(() {
       selectedIndex = index;
@@ -92,15 +86,14 @@ class _TabsScreenState extends State<TabsScreen> {
       return true;
     }).toList();
     Widget activescreen = CategoryScreen(
-      selectfav: selectfav,
       availabemeals: availableMeals,
     );
 
     if (selectedIndex == 1) {
+      final favoriteMeals = ref.watch(favoriteMealsProvider);
       activescreen = mealsscreen(
-        meals: favoutite,
+        meals: favoriteMeals,
         title: '',
-        selectfav: selectfav,
       );
     }
 
