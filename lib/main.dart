@@ -4,7 +4,7 @@ import 'package:mealsapp/screens/mealsscreen.dart';
 import 'package:mealsapp/widget/tabs.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'data/dummy_data.dart';
+import 'package:mealsapp/data/dummy_data.dart';
 import 'screens/categories.dart';
 
 final theme = ThemeData(
