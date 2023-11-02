@@ -17,14 +17,14 @@ final theme = ThemeData(
 );
 
 void main() {
-  runApp(
-    ProviderScope(
-      child: App(),
+  runApp(                            //Adding Provider in our App
+    ProviderScope(                   //Structure of Flutter Code is Main -> runApp -> App
+      child: App(),                   //App is a widget
     ),
   );
 }
 
-class App extends StatelessWidget {
+class App extends StatelessWidget {               //It is a Stateless Widegt returing Material app
   const App({super.key});
 
   @override

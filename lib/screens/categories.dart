@@ -9,20 +9,23 @@ import '../widget/category_gridItems.dart';
 
 
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key, required this.availabemeals});
 
   final List<Meal> availabemeals;
 
+  @override
+  State<CategoryScreen> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> with SingleTickerProviderStateMixin{
 
 //Build Context Store the Location of Widegt in Widegt Tree.
-//Here we are passing Build context Explictedly since our function is not inside the build function
-
   void _selectedCategory(BuildContext context, Category category) {
-    final filtermeals=availabemeals.where((meal) => meal.categories.contains(category.id)).toList();
+    final filtermeals=widget.availabemeals.where((meal) => meal.categories.contains(category.id)).toList();
     Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => mealsscreen(title: category.title, meals: filtermeals,)));
-  } //In this we are just changing the Screen
-
+  }
+ //In this we are just changing the Screen
   @override
   Widget build(BuildContext context) {
     var category;
@@ -31,7 +34,7 @@ class CategoryScreen extends StatelessWidget {
         title: Text('Category'),
       ),
       body: GridView(                    // Displaying our Category in a GridView
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(    //Set properties to our Grid 
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(    //Set properties to our Grid
           crossAxisCount: 2,
           childAspectRatio: 3 / 2,
           crossAxisSpacing: 20,
